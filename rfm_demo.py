@@ -1,11 +1,11 @@
 import pandas as pd
 import altair as alt 
 import streamlit as st
+from dotenv import load_dotenv
 import matplotlib.pyplot as plt
 from pandasai import Agent
 from rfm import RFM
 import os
-import time
 
 dataframe = pd.read_csv('updated_synthetic_consumer_data.csv', parse_dates=['invoice_date'])
 
@@ -21,14 +21,13 @@ if uploaded_file is not None:
     dataframe = dataframe.dropna()
     
     if uploaded_file is None:
-        g =dataframe
+        dataframe
     
     
 rfm=st.checkbox(label="Run RFM Analysis")
 
+           
 if rfm:
-            
-       if rfm:
             
         with st.spinner('We are not programs, Gerty. We are people'):
             time.sleep(5)
@@ -73,6 +72,5 @@ if prompt:
         agent=Agent(r.rfm_table)
         response=agent.chat(prompt)
         st.write(response)
-          
                 
       
