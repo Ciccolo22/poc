@@ -9,7 +9,7 @@ import time
 
 dataframe = pd.read_csv('updated_synthetic_consumer_data.csv', parse_dates=['invoice_date'])
 
-os.environ["PANDASAI_API_KEY"] = "PANDASAI_API_KEY"
+PANDASAI_API_KEY = st.secrets["PANDASAI_API_KEY"]
 
 st.title("Segmentation ❄️ App")
 
