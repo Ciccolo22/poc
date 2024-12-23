@@ -5,3 +5,4 @@ python-dotenv
 rfm==1.0.9
 matplotlib==3.9.2
 altair==5.0.1
+seaborn==0.13.2
