@@ -47,7 +47,7 @@ if rfm:
         st.altair_chart(chart, use_container_width=True)
     
     
-st.write("Generate a downloadable table of your results")
+st.write("Create a table and generate a downloadable table of your results... then ask some questions")
 table=st.checkbox(label="Create Table", key='button2')
 
 if table:
