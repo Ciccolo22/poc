@@ -1,5 +1,6 @@
 
-import pandas as pd 
+import pandas as pd
+import altair as alt 
 import streamlit as st
 import time
 import os
@@ -31,9 +32,16 @@ if rfm:
             st.success("Done!")
              
         r = RFM(dataframe, customer_id='cust_id', transaction_date='invoice_date', amount='amount')
-        fig=r.plot_segment_distribution()
-        st.set_option('deprecation.showPyplotGlobalUse', False)
-        st.pyplot(fig)
+        fig=r.rfm_table
+        chart= alt.Chart(fig).mark_bar().encode(
+        y=alt.Y('segment:N', title='Segment'),
+        x=alt.X('count()', title='Count'),
+        color=alt.Color('segment:N', scale=alt.Scale(scheme='tableau10'), legend=None)
+    ).properties(
+        title='Counts by Segment'
+    ).configure_axis(grid=False)
+
+        st.altair_chart(chart, use_container_width=True)
         
     
     
