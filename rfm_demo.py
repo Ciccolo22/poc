@@ -1,14 +1,18 @@
-
 import pandas as pd
 import altair as alt 
 import streamlit as st
-import time
-import os
 from dotenv import load_dotenv
 import matplotlib.pyplot as plt
+from pandasai import Agent
 from rfm import RFM
+import os
+import time
+
 dataframe = pd.read_csv('updated_synthetic_consumer_data.csv', parse_dates=['invoice_date'])
 
+load_dotenv()
+
+os.environ["PANDASAI_API_KEY"] = "PANDASAI_API_KEY"
 
 st.title("Segmentation ❄️ App")
 
@@ -20,12 +24,14 @@ if uploaded_file is not None:
     dataframe = dataframe.dropna()
     
     if uploaded_file is None:
-        dataframe
+        g =dataframe
     
     
 rfm=st.checkbox(label="Run RFM Analysis")
 
 if rfm:
+            
+       if rfm:
             
         with st.spinner('We are not programs, Gerty. We are people'):
             time.sleep(5)
@@ -42,7 +48,6 @@ if rfm:
     ).configure_axis(grid=False)
 
         st.altair_chart(chart, use_container_width=True)
-        
     
     
 st.write("Generate a downloadable table of your results")
@@ -55,7 +60,7 @@ if table:
 
     csv=r.rfm_table.to_csv(index=False).encode('utf-8')
 
-    
+
     st.download_button(
         "Press to Download",
         csv,
@@ -64,6 +69,13 @@ if table:
         key='download-csv'
             )
                 
+            
+prompt = st.text_area("Ask some questions about your data???")
+if prompt:
+       with st.spinner("the world has turned and left me here... generating a response.."):
+        agent=Agent(r.rfm_table)
+        response=agent.chat(prompt)
+        st.write(response)
           
                 
       
