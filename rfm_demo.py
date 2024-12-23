@@ -20,7 +20,7 @@ if uploaded_file is not None:
     dataframe = dataframe.dropna()
     
     if uploaded_file is None:
-        g =dataframe
+        dataframe
     
     
 rfm=st.checkbox(label="Run RFM Analysis")
