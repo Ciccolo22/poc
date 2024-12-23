@@ -1,7 +1,6 @@
 import pandas as pd
 import altair as alt 
 import streamlit as st
-from dotenv import load_dotenv
 import matplotlib.pyplot as plt
 from pandasai import Agent
 from rfm import RFM
@@ -9,8 +8,6 @@ import os
 import time
 
 dataframe = pd.read_csv('updated_synthetic_consumer_data.csv', parse_dates=['invoice_date'])
-
-load_dotenv()
 
 os.environ["PANDASAI_API_KEY"] = "PANDASAI_API_KEY"
 
