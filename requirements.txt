@@ -1,4 +1,4 @@
-﻿pandas==1.5.3
+pandas==1.5.3
 pandasai==2.4.1
 streamlit==1.32.0
 python-dotenv
@@ -6,4 +6,4 @@ rfm==1.0.9
 matplotlib==3.9.2
 altair==5.0.1
 seaborn==0.13.2
-yaml
+pyyaml
